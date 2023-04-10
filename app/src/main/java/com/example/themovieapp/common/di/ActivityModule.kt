@@ -1,4 +1,4 @@
-package com.example.themovieapp.di
+package com.example.themovieapp.common.di
 
 import android.app.Activity
 import android.view.LayoutInflater

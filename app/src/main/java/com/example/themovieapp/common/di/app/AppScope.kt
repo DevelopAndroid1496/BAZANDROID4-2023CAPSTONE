@@ -1,4 +1,4 @@
-package com.example.themovieapp.di.app
+package com.example.themovieapp.common.di.app
 
 import dagger.hilt.migration.AliasOf
 import javax.inject.Scope

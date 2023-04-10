@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun getLatestMovies() : Flow<DataState<MovieResponse>>
+    fun getLatestMovies() : Flow<DataState<MovieResponse>>
 }

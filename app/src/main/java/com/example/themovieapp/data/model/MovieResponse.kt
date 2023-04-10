@@ -1,13 +1,20 @@
 package com.example.themovieapp.data.model
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
+    @SerializedName("page")
+    @Expose
     var page:Int = 0,
+    @SerializedName("results")
+    @Expose
     var results:Array<Movie> = emptyArray(),
     @SerializedName("total_pages")
+    @Expose
     var totalPages:Int = 0,
     @SerializedName("total_results")
+    @Expose
     var totalResults:Int = 0
 ) {
     override fun equals(other: Any?): Boolean {

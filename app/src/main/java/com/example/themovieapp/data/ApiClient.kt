@@ -4,9 +4,11 @@ import com.example.themovieapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class ApiClient {
+class ApiClient @Inject constructor() {
 
     operator fun invoke (): Retrofit.Builder{
         val interceptor = HttpLoggingInterceptor()
@@ -27,6 +29,7 @@ class ApiClient {
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client)
 
     }
