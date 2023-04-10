@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.themovieapp.R
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.presentation.viewModel.MovieViewModel
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
 
     private val viewModelMovies : MovieViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         //viewModelMovies.getMoviesNow()
         //viewModelMovies.getMovieLatest()
         viewModelMovies.getMovieTopRated()
+
+
 
     }
 

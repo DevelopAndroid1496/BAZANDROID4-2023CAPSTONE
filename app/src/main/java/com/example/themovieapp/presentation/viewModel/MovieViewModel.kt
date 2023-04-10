@@ -1,5 +1,6 @@
 package com.example.themovieapp.presentation.viewModel
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,7 @@ import com.example.themovieapp.data.model.now.MovieResponse
 import com.example.themovieapp.domain.GetMovieLatestUseCase
 import com.example.themovieapp.domain.GetMoviesNowUseCase
 import com.example.themovieapp.domain.GetMoviesTopRatedUseCase
+import com.example.themovieapp.domain.ValidateAuthFirebaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class MovieViewModel @Inject constructor(
     private val moviesNowUseCase: GetMoviesNowUseCase,
     private val movieLatestUseCase: GetMovieLatestUseCase,
-    private val moviesTopRatedUseCase: GetMoviesTopRatedUseCase
+    private val moviesTopRatedUseCase: GetMoviesTopRatedUseCase,
+    private val firebaseUseCase: ValidateAuthFirebaseUseCase
 ) : BaseViewModel() {
 
     private val _moviesNow: MutableLiveData<DataState<MovieResponse>> = MutableLiveData()
@@ -58,6 +61,10 @@ class MovieViewModel @Inject constructor(
                     _moviesTopRated.value = it
                 }
         }
+    }
+
+    fun createUI(icon: Int? = null): Intent? {
+        return  firebaseUseCase.generateUILogin(icon)
     }
 
 }
