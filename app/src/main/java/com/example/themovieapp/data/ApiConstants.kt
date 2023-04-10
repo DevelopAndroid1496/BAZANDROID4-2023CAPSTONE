@@ -12,3 +12,4 @@ const val HEADER_CONTENT_TYPE = "Content-Type: application/json;charset=utf-8"
 
 const val VERSION = "3"
 const val NOW_MOVIES = "${VERSION}/movie/now_playing${API_KEY}"
+const val LATEST_MOVIE = "${VERSION}/movie/latest${API_KEY}"

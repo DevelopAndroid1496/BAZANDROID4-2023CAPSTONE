@@ -3,25 +3,42 @@ package com.example.themovieapp.presentation.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.themovieapp.common.BaseViewModel
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.data.model.MovieResponse
-import com.example.themovieapp.domain.GetMoviesLatestUseCase
+import com.example.themovieapp.data.model.latest.LatestMovieResponse
+import com.example.themovieapp.data.model.now.MovieResponse
+import com.example.themovieapp.domain.GetMovieLatestUseCase
+import com.example.themovieapp.domain.GetMoviesNowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(private val moviesLatestUseCase: GetMoviesLatestUseCase): BaseViewModel() {
+class MovieViewModel @Inject constructor(
+    private val moviesNowUseCase: GetMoviesNowUseCase,
+    private val movieLatestUseCase: GetMovieLatestUseCase
+) : BaseViewModel() {
 
-    private val _moviesLatest : MutableLiveData<DataState<MovieResponse>> = MutableLiveData()
-    val moviesLatest : LiveData<DataState<MovieResponse>>
+    private val _moviesNow: MutableLiveData<DataState<MovieResponse>> = MutableLiveData()
+    val moviesNow: LiveData<DataState<MovieResponse>>
+        get() = _moviesNow
+
+    private val _moviesLatest: MutableLiveData<DataState<LatestMovieResponse>> = MutableLiveData()
+    val moviesLatest: LiveData<DataState<LatestMovieResponse>>
         get() = _moviesLatest
 
-    fun getMoviesLatest(){
+    fun getMoviesNow() {
         viewModelScope.launch {
-            moviesLatestUseCase.invoke()
+            moviesNowUseCase.invoke()
+                .collect {
+                    _moviesNow.value = it
+                }
+        }
+    }
+
+    fun getMovieLatest() {
+        viewModelScope.launch {
+            movieLatestUseCase.invoke()
                 .collect{
                     _moviesLatest.value = it
                 }

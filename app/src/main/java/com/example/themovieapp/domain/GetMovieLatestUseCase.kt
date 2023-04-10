@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.themovieapp.common.BaseError
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.MovieResponse
+import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import com.example.themovieapp.data.repository.MovieRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -13,16 +13,16 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class GetMoviesLatestUseCase @Inject constructor(
+class GetMovieLatestUseCase @Inject constructor(
     private val repository: MovieRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    suspend operator fun invoke() : Flow<DataState<MovieResponse>> = flow{
+    suspend operator fun invoke(): Flow<DataState<LatestMovieResponse>> = flow {
         emit(DataState.Loading)
-        repository.getLatestMovies()
-            .catch{ e ->
-                    Log.d("EXEP", e.message.toString())
+        repository.getLatestMovie()
+            .catch { e ->
+                Log.d("EXEP", e.message.toString())
             }
             .collect{ state ->
                 when(state){
@@ -35,5 +35,6 @@ class GetMoviesLatestUseCase @Inject constructor(
                     else -> {}
                 }
             }
+
     }.flowOn(ioDispatcher)
 }
