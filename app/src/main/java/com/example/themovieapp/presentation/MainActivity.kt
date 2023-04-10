@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //viewModelMovies.getMoviesNow()
-        viewModelMovies.getMovieLatest()
+        //viewModelMovies.getMovieLatest()
+        viewModelMovies.getMovieTopRated()
 
     }
 
@@ -34,10 +35,19 @@ class MainActivity : AppCompatActivity() {
                 else -> {}
             }
         }*/
-        viewModelMovies.moviesLatest.observe(this){
+        /*viewModelMovies.moviesLatest.observe(this){
             when(it){
                 is DataState.Success -> {
                     Toast.makeText(this,"Response "+it.data.originalTitle, Toast.LENGTH_LONG).show()
+                }
+                else -> {}
+            }
+        }*/
+
+        viewModelMovies.moviesTopRated.observe(this){
+            when(it){
+                is DataState.Success -> {
+                    Toast.makeText(this,"Response "+it.data.totalResults, Toast.LENGTH_LONG).show()
                 }
                 else -> {}
             }

@@ -42,4 +42,17 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getTopRatedMovies(): Flow<DataState<MovieResponse>> = flow{
+        try {
+            val response = api.getTopRatedMovies()
+            if (response.isSuccessful){
+                response.body()?.let {
+                    emit(value = DataState.Success(data = it))
+                }
+            }
+        }catch (e : Exception){
+            emit(value = DataState.Error(error = BaseError(status_message = "", status_code = -1,status_operation = false, exception = e)))
+        }
+    }
+
 }

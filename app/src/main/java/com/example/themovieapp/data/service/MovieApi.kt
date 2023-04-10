@@ -3,6 +3,7 @@ package com.example.themovieapp.data.service
 import com.example.themovieapp.data.HEADER_CONTENT_TYPE
 import com.example.themovieapp.data.LATEST_MOVIE
 import com.example.themovieapp.data.NOW_MOVIES
+import com.example.themovieapp.data.TOP_RATED
 import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import com.example.themovieapp.data.model.now.MovieResponse
 import retrofit2.Response
@@ -18,5 +19,10 @@ interface MovieApi {
     @Headers(HEADER_CONTENT_TYPE)
     @GET(LATEST_MOVIE)
     suspend fun getLatestMovie(): Response<LatestMovieResponse>
+
+    @Headers(HEADER_CONTENT_TYPE)
+    @GET(TOP_RATED)
+    suspend fun getTopRatedMovies() : Response<MovieResponse>
+
 
 }

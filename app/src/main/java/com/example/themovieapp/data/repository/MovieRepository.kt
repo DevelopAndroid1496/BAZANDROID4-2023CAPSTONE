@@ -10,4 +10,6 @@ interface MovieRepository {
     fun getNowMovies() : Flow<DataState<MovieResponse>>
 
     fun getLatestMovie() : Flow<DataState<LatestMovieResponse>>
+
+    fun getTopRatedMovies(): Flow<DataState<MovieResponse>>
 }

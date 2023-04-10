@@ -9,6 +9,7 @@ import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import com.example.themovieapp.data.model.now.MovieResponse
 import com.example.themovieapp.domain.GetMovieLatestUseCase
 import com.example.themovieapp.domain.GetMoviesNowUseCase
+import com.example.themovieapp.domain.GetMoviesTopRatedUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val moviesNowUseCase: GetMoviesNowUseCase,
-    private val movieLatestUseCase: GetMovieLatestUseCase
+    private val movieLatestUseCase: GetMovieLatestUseCase,
+    private val moviesTopRatedUseCase: GetMoviesTopRatedUseCase
 ) : BaseViewModel() {
 
     private val _moviesNow: MutableLiveData<DataState<MovieResponse>> = MutableLiveData()
@@ -26,6 +28,10 @@ class MovieViewModel @Inject constructor(
     private val _moviesLatest: MutableLiveData<DataState<LatestMovieResponse>> = MutableLiveData()
     val moviesLatest: LiveData<DataState<LatestMovieResponse>>
         get() = _moviesLatest
+
+    private val _moviesTopRated: MutableLiveData<DataState<MovieResponse>> = MutableLiveData()
+    val moviesTopRated: LiveData<DataState<MovieResponse>>
+        get() = _moviesTopRated
 
     fun getMoviesNow() {
         viewModelScope.launch {
@@ -44,4 +50,14 @@ class MovieViewModel @Inject constructor(
                 }
         }
     }
+
+    fun getMovieTopRated() {
+        viewModelScope.launch {
+            moviesTopRatedUseCase.invoke()
+                .collect{
+                    _moviesTopRated.value = it
+                }
+        }
+    }
+
 }
