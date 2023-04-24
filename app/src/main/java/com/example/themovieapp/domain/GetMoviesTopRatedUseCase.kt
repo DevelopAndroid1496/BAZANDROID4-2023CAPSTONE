@@ -21,19 +21,7 @@ class GetMoviesTopRatedUseCase @Inject constructor(
     suspend operator fun invoke() : Flow<DataState<MovieResponse>> = flow{
         emit(DataState.Loading)
         repository.getTopRatedMovies()
-            .catch{ e ->
-                Log.d("EXEP", e.message.toString())
-            }
-            .collect{ state ->
-                when(state){
-                    is DataState.Success -> {
-                        emit(DataState.Success(data = state.data))
-                    }
-                    is DataState.Error -> {
-                        emit(DataState.Error(error = BaseError(status_message = "Operation not performed")))
-                    }
-                    else -> {}
-                }
-            }
+            .catch{ e -> e.printStackTrace() }
+            .collect{ stateTopMovie -> emit(stateTopMovie) }
     }.flowOn(ioDispatcher)
 }

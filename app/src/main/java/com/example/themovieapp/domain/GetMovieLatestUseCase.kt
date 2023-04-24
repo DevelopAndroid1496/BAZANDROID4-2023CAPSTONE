@@ -17,23 +17,11 @@ class GetMovieLatestUseCase @Inject constructor(
     private val repository: MovieRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-
     suspend operator fun invoke(): Flow<DataState<LatestMovieResponse>> = flow {
-        emit(DataState.Loading)
         repository.getLatestMovie()
-            .catch { e ->
-                Log.d("EXEP", e.message.toString())
-            }
-            .collect{ state ->
-                when(state){
-                    is DataState.Success -> {
-                        emit(DataState.Success(data = state.data))
-                    }
-                    is DataState.Error -> {
-                        emit(DataState.Error(error = BaseError(status_message = "Operation not performed")))
-                    }
-                    else -> {}
-                }
+            .catch { e -> e.printStackTrace() }
+            .collect{ stateLatestMovie ->
+                emit(stateLatestMovie)
             }
 
     }.flowOn(ioDispatcher)

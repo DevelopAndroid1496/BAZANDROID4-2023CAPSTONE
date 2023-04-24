@@ -9,7 +9,7 @@ data class MovieResponse(
     var page:Int = 0,
     @SerializedName("results")
     @Expose
-    var results:Array<Movie> = emptyArray(),
+    var results:List<MovieRes> = emptyList(),
     @SerializedName("total_pages")
     @Expose
     var totalPages:Int = 0,
@@ -24,7 +24,6 @@ data class MovieResponse(
         other as MovieResponse
 
         if (page != other.page) return false
-        if (!results.contentEquals(other.results)) return false
         if (totalPages != other.totalPages) return false
         if (totalResults != other.totalResults) return false
 
@@ -33,7 +32,6 @@ data class MovieResponse(
 
     override fun hashCode(): Int {
         var result = page
-        result = 31 * result + results.contentHashCode()
         result = 31 * result + totalPages
         result = 31 * result + totalResults
         return result

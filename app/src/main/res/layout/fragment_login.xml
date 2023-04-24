@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.fragments.LoginFragment">
+
+    <ImageView
+        android:id="@+id/iv_logo_login"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="84dp"
+        android:contentDescription="@string/logo"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_user_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_user_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:drawableEnd="@drawable/baseline_account_circle_24"
+            android:drawablePadding="8dp"
+            android:padding="8dp"
+            android:hint="@string/lbl_user_login"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_user_login"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleContentDescription="Mostrar contraseña">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_password_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lbl_password_login"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:padding="8dp"
+            android:ems="15">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password_login"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:background="@color/primary_movie"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/v_separatorAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/lbl_login_with_provider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/bt_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_separatorAuth"/>
+
+    <TextView
+        android:id="@+id/tv_not_account_yet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:gravity="end"
+        android:textSize="14sp"
+        android:text="@string/lbl_not_account_yet"
+        app:layout_constraintEnd_toStartOf="@+id/tv_sing_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_sign_in" />
+
+    <TextView
+        android:id="@+id/tv_sing_up"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_sing_up"
+        android:textColor="@color/teal_200"
+        android:gravity="start"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:paddingStart="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_not_account_yet"
+        app:layout_constraintTop_toBottomOf="@+id/bt_sign_in"
+        tools:ignore="RtlSymmetry" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

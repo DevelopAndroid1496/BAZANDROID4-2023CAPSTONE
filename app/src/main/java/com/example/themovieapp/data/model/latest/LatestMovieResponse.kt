@@ -1,6 +1,7 @@
 package com.example.themovieapp.data.model.latest
 
 import com.example.themovieapp.data.model.now.Gender
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class LatestMovieResponse (
@@ -29,6 +30,7 @@ data class LatestMovieResponse (
     @SerializedName("popularity")
     val popularity: Double,
     @SerializedName("poster_path")
+    @Expose
     val posterPath: Any? = null,
     @SerializedName("production_companies")
     val productionCompanies: List<Any?>,

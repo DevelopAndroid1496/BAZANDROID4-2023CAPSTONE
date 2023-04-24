@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">TheMovieApp</string>
+    <string name="lbl_opc1_menu_home_log_out">cerrar sesión</string>
+
+    <string name="web_client_id">AIzaSyADRQOcqQMw-RWyVAWd5LptiTiMeNknj1A</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_user_login">Usuario</string>
+    <string name="lbl_password_login">Contraseña</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="btn_signUp">Registrate</string>
+    <string name="lbl_login_with_provider">--- Or sing in with ---</string>
+    <string name="lbl_not_account_yet">Aún no tienes cuenta?</string>
+    <string name="lbl_sing_up">Registrate</string>
+    <string name="logo">Logo</string>
+    <string name="cd_picmovie_adapter">Image Movie</string>
+    <string name="title_menu_opc1">Más recientes</string>
+    <string name="title_menu_opc2">Película actual</string>
+    <string name="title_menu_opc3">Mejor votada</string>
+    <string name="lbl_loading_dialog">cargando</string>
+    <string name="lbl_now_movies_title">Ultimas peliculas</string>
+
 </resources>

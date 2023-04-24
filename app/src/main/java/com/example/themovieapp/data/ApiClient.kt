@@ -12,11 +12,11 @@ class ApiClient @Inject constructor() {
 
     operator fun invoke (): Retrofit.Builder{
         val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
 
         val okHttpClientBuilder = OkHttpClient().newBuilder()
         okHttpClientBuilder.interceptors().clear()
-
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         okHttpClientBuilder
             .addInterceptor(interceptor)
@@ -24,7 +24,6 @@ class ApiClient @Inject constructor() {
             .writeTimeout(2, TimeUnit.MINUTES)
             .connectTimeout(2, TimeUnit.MINUTES)
             .retryOnConnectionFailure(false)
-            .addInterceptor(interceptor)
         val client: OkHttpClient = okHttpClientBuilder.build()
 
         return Retrofit.Builder()
