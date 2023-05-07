@@ -1,6 +1,6 @@
 package com.example.themovieapp.data.model.genders
 
-import com.example.themovieapp.common.data.entities.GenderMovieEntity
+import com.example.local.db.entities.GenderMovieEntity
 import com.example.themovieapp.domain.model.GenderDom
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -11,9 +11,9 @@ data class MovieGenderResponse(
     var listGenders : List<GenderMovie> = emptyList()
 )
 
-fun MovieGenderResponse.toDatabaseGenders() = mutableListOf<GenderMovieEntity>().apply {
+fun MovieGenderResponse.toDatabaseGenders() = mutableListOf<com.example.local.db.entities.GenderMovieEntity>().apply {
     listGenders.forEach {
-        add(GenderMovieEntity(it.id,it.name))
+        add(com.example.local.db.entities.GenderMovieEntity(it.id, it.name))
     }
 }
 

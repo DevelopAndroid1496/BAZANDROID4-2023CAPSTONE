@@ -1,10 +1,7 @@
 package com.example.themovieapp.domain
 
 import android.annotation.SuppressLint
-import com.example.themovieapp.common.data.dao.MovieDao
-import com.example.themovieapp.common.data.entities.toDatabaseLatest
 import com.example.themovieapp.data.model.latest.LatestMovieResponse
-import com.example.themovieapp.domain.model.toDomain
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

@@ -1,11 +1,12 @@
-package com.example.themovieapp.common.data
+package com.example.local.db
 
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.themovieapp.common.data.dao.MovieDao
-import com.example.themovieapp.common.data.entities.*
+import com.example.local.db.dao.MovieDao
+import com.example.local.db.entities.*
+
 
 @Database(
     entities = [MovieEntity::class,

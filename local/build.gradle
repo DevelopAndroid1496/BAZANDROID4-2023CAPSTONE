@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        minSdk 24
+        minSdk 21
         targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -48,6 +48,9 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.1"
     annotationProcessor "androidx.room:room-compiler:2.5.1"
     implementation 'androidx.room:room-ktx:2.5.0'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

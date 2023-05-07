@@ -1,9 +1,8 @@
-package com.example.themovieapp.common.data.entities
+package com.example.local.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.themovieapp.domain.model.Movie
 
 @Entity(tableName = "movie_top_table")
 data class TopRatedMovieEntity(
@@ -21,16 +20,3 @@ data class TopRatedMovieEntity(
     @ColumnInfo(name = "vote_count") var voteCount: Int = 0
 )
 
-fun Movie.toDatabaseTop() = MovieEntity(
-    id,
-    idMovie = 0,
-    adult,
-    gender,
-    backdropPath,
-    overview,
-    posterPath,
-    releaseDate,
-    title,
-    voteAverage,
-    voteCount
-)

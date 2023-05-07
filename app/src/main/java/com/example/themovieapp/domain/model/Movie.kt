@@ -1,8 +1,8 @@
 package com.example.themovieapp.domain.model
 
 import android.os.Parcelable
-import com.example.themovieapp.common.data.entities.MovieEntity
-import com.example.themovieapp.common.data.entities.TopRatedMovieEntity
+import com.example.local.db.entities.MovieEntity
+import com.example.local.db.entities.TopRatedMovieEntity
 import com.example.themovieapp.data.model.now.MovieRes
 import kotlinx.android.parcel.Parcelize
 
@@ -33,7 +33,7 @@ fun MovieRes.toDomain() =
         voteCount
     )
 
-fun MovieEntity.toDomain() =
+fun com.example.local.db.entities.MovieEntity.toDomain() =
     Movie(
         adult,
         backdropPath,
@@ -47,7 +47,7 @@ fun MovieEntity.toDomain() =
         voteCount
     )
 
-fun TopRatedMovieEntity.toDomain() =
+fun com.example.local.db.entities.TopRatedMovieEntity.toDomain() =
     Movie(
         adult,
         backdropPath,
@@ -60,3 +60,31 @@ fun TopRatedMovieEntity.toDomain() =
         voteAverage,
         voteCount
     )
+
+fun Movie.toDatabaseNow() = MovieEntity(
+    id,
+    idMovie = 0,
+    adult,
+    gender,
+    backdropPath,
+    overview,
+    posterPath,
+    releaseDate,
+    title,
+    voteAverage,
+    voteCount
+)
+
+fun Movie.toDatabaseTop() = MovieEntity(
+    id,
+    idMovie = 0,
+    adult,
+    gender,
+    backdropPath,
+    overview,
+    posterPath,
+    releaseDate,
+    title,
+    voteAverage,
+    voteCount
+)

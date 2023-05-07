@@ -1,10 +1,8 @@
-package com.example.themovieapp.common.data.entities
+package com.example.local.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.themovieapp.domain.model.Movie
-import com.example.themovieapp.domain.model.MovieLatest
 
 @Entity(tableName = "movie_latest_table")
 data class LatestMovieEntity(
@@ -32,30 +30,6 @@ data class LatestMovieEntity(
 
 )
 
-fun MovieLatest.toDatabaseLatest() = imdb_id?.let {
-    LatestMovieEntity(
-        id,
-        title,
-        adult,
-        backdropPath,
-        budget,
-        homepage,
-        it,
-        original_language,
-        original_title,
-        overview,
-        popularity,
-        poster_path,
-        release_date,
-        revenue,
-        runtime,
-        status,
-        tagline,
-        video,
-        vote_average,
-        vote_count
-    )
-}
 
 
 

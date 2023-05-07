@@ -1,10 +1,8 @@
-package com.example.themovieapp.common.data.entities
+package com.example.local.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.themovieapp.data.model.now.Gender
-import com.example.themovieapp.domain.model.Movie
 
 @Entity(tableName = "movie_now_table")
 data class MovieEntity(
@@ -22,17 +20,4 @@ data class MovieEntity(
     @ColumnInfo(name = "vote_count") var voteCount: Int = 0
 )
 
-fun Movie.toDatabaseNow() = MovieEntity(
-    id,
-    idMovie = 0,
-    adult,
-    gender,
-    backdropPath,
-    overview,
-    posterPath,
-    releaseDate,
-    title,
-    voteAverage,
-    voteCount
-)
 

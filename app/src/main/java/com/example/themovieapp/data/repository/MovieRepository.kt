@@ -1,7 +1,7 @@
 package com.example.themovieapp.data.repository
 
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.common.data.entities.LatestMovieEntity
+import com.example.local.db.entities.LatestMovieEntity
 import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import com.example.themovieapp.domain.model.GenderDom
 import com.example.themovieapp.domain.model.Movie
@@ -18,7 +18,7 @@ interface MovieRepository {
     //By api
     fun getLatestMovie() : Observable<Response<LatestMovieResponse>>
 
-    suspend fun insertMovieLatest(movieLatest: LatestMovieEntity)
+    suspend fun insertMovieLatest(movieLatest: com.example.local.db.entities.LatestMovieEntity)
 
     //By api
     suspend fun getTopRatedMovies(): Flow<DataState<List<Movie>>>

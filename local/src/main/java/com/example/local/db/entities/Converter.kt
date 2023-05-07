@@ -1,8 +1,7 @@
-package com.example.themovieapp.common.data.entities
+package com.example.local.db.entities
 
 import androidx.room.TypeConverter
-import com.example.themovieapp.data.model.genders.GenderMovie
-import com.example.themovieapp.data.model.now.Gender
+import com.example.local.db.model.GenderMovie
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

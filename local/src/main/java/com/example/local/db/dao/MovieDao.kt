@@ -1,10 +1,10 @@
-package com.example.themovieapp.common.data.dao
+package com.example.local.db.dao
 
 import androidx.room.*
-import com.example.themovieapp.common.data.entities.*
-import com.example.themovieapp.data.model.genders.GenderMovie
-import com.example.themovieapp.domain.model.GenderDom
-
+import com.example.local.db.entities.GenderMovieEntity
+import com.example.local.db.entities.LatestMovieEntity
+import com.example.local.db.entities.MovieEntity
+import com.example.local.db.entities.TopRatedMovieEntity
 
 @Dao
 interface MovieDao {

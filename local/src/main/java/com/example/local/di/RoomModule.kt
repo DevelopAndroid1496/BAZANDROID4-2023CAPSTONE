@@ -1,8 +1,8 @@
-package com.example.themovieapp.common.di.data
+package com.example.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.themovieapp.common.data.MovieDataBase
+import com.example.local.db.MovieDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +18,10 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providesRoom(@ApplicationContext context: Context) = Room.databaseBuilder(context,MovieDataBase::class.java,
-        DATABASE_NAME).build()
+    fun providesRoom(@ApplicationContext context: Context) = Room.databaseBuilder(context,
+        MovieDataBase::class.java,
+        DATABASE_NAME
+    ).build()
 
     @Singleton
     @Provides

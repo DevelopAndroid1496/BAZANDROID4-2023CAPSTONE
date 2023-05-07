@@ -1,7 +1,7 @@
 package com.example.themovieapp.domain.model
 
 import android.os.Parcelable
-import com.example.themovieapp.common.data.entities.LatestMovieEntity
+import com.example.local.db.entities.LatestMovieEntity
 import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import kotlinx.android.parcel.Parcelize
 
@@ -55,7 +55,7 @@ fun LatestMovieResponse.toDomain() = backdropPath?.let {
     )
 }
 
-fun LatestMovieEntity.toDomain() = MovieLatest(
+fun com.example.local.db.entities.LatestMovieEntity.toDomain() = MovieLatest(
     id,
     title,
     adult,
@@ -77,3 +77,28 @@ fun LatestMovieEntity.toDomain() = MovieLatest(
     vote_average,
     vote_count
 )
+
+fun MovieLatest.toDatabaseLatest() = imdb_id?.let {
+    LatestMovieEntity(
+        id,
+        title,
+        adult,
+        backdropPath,
+        budget,
+        homepage,
+        it,
+        original_language,
+        original_title,
+        overview,
+        popularity,
+        poster_path,
+        release_date,
+        revenue,
+        runtime,
+        status,
+        tagline,
+        video,
+        vote_average,
+        vote_count
+    )
+}

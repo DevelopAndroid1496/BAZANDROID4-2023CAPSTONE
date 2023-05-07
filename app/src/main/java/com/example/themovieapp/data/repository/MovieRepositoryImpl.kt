@@ -2,8 +2,6 @@ package com.example.themovieapp.data.repository
 
 import com.example.themovieapp.common.BaseError
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.common.data.dao.MovieDao
-import com.example.themovieapp.common.data.entities.*
 import com.example.themovieapp.common.di.app.IoDispatcher
 import com.example.themovieapp.data.model.genders.toDatabaseGenders
 import com.example.themovieapp.data.model.genders.toDomain
@@ -11,23 +9,22 @@ import com.example.themovieapp.data.model.latest.LatestMovieResponse
 import com.example.themovieapp.data.service.MovieApi
 import com.example.themovieapp.domain.model.GenderDom
 import com.example.themovieapp.domain.model.Movie
+import com.example.themovieapp.domain.model.toDatabaseNow
 import com.example.themovieapp.domain.model.toDomain
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import retrofit2.Response
 import rx.Observable
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val api: MovieApi,
-    private val movieDao: MovieDao,
+    private val movieDao: com.example.local.db.dao.MovieDao,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MovieRepository {
 
-    private var entityRequestFromObservable: LatestMovieEntity? = null
+    private var entityRequestFromObservable: com.example.local.db.entities.LatestMovieEntity? = null
     override suspend fun getNowMovies(): Flow<DataState<List<Movie>>> = flow {
         try {
             val response = api.getNowMovies()
@@ -42,8 +39,8 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun getLatestMovie(): Observable<Response<LatestMovieResponse>> {
-        var myObj: Response<LatestMovieResponse>? = null
-        val requestLatestEntity = api.getLatestMovie().flatMap {
+        /*var myObj: Response<LatestMovieResponse>? = null
+        *//*val requestLatestEntity = api.getLatestMovie().flatMap {
             myObj = it
             Observable.just(it.body())
                 .map { latestResponse -> latestResponse?.toDomain()?.toDatabaseLatest() }
@@ -52,12 +49,12 @@ class MovieRepositoryImpl @Inject constructor(
             CoroutineScope(ioDispatcher).launch {
                 entityRequestFromObservable?.let { it1 -> movieDao.insertLatestMovie(it1) }
             }
-        }
+        }*/
 
-        return Observable.just(myObj)
+        return api.getLatestMovie()
     }
 
-    override suspend fun insertMovieLatest(movieLatest: LatestMovieEntity) {
+    override suspend fun insertMovieLatest(movieLatest: com.example.local.db.entities.LatestMovieEntity) {
         if (entityRequestFromObservable != null){
             movieDao.insertLatestMovie(entityRequestFromObservable!!)
         }
