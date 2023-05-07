@@ -10,6 +10,9 @@ data class MovieRes(
     @SerializedName("backdrop_path")
     @Expose
     var backdropPath: String = "",
+    @SerializedName("genre_ids")
+    @Expose
+    var genderList: List<Int>,
     @SerializedName("id")
     @Expose
     var id: String = "",

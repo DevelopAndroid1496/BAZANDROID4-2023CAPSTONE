@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.data.model.now.MovieRes
 import com.example.themovieapp.databinding.FragmentTopRatedMovieBinding
+import com.example.themovieapp.domain.model.Movie
 import com.example.themovieapp.presentation.ui.adapter.TopMoviesAdapter
 import com.example.themovieapp.presentation.viewModel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +61,7 @@ class TopRatedMovieFragment : Fragment() {
 
                         }
                         is DataState.Success -> {
-                            initRecycler(stateTopRatedMovie.data.results)
+                            initRecycler(stateTopRatedMovie.data)
                         }
                         is DataState.Error -> {
 
@@ -72,11 +73,11 @@ class TopRatedMovieFragment : Fragment() {
         }
     }
 
-    private fun initRecycler(listMovieRes:List<MovieRes>){
+    private fun initRecycler(listMovie:List<Movie>){
         binding?.topMoviesRecyclerView.apply {
             context?.let{ ctx ->
                 this?.layoutManager = LinearLayoutManager(ctx, RecyclerView.VERTICAL, false)
-                movieTopAdapter = TopMoviesAdapter(ctx, listMovieRes)
+                movieTopAdapter = TopMoviesAdapter(ctx, listMovie)
                 this?.adapter = movieTopAdapter
             }
         }

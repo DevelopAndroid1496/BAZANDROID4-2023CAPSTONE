@@ -12,14 +12,11 @@ import com.example.themovieapp.BuildConfig
 import com.example.themovieapp.R
 import com.example.themovieapp.data.PATH_IMAGES
 import com.example.themovieapp.data.model.now.MovieRes
+import com.example.themovieapp.domain.model.Movie
 import com.squareup.picasso.Picasso
 
-class TopMoviesAdapter(private val context: Context, private val postItems: List<MovieRes>):
+class TopMoviesAdapter(private val context: Context, private val listMovies: List<Movie>):
     RecyclerView.Adapter<TopMoviesAdapter.MovieTopViewHolder>() {
-
-    init {
-        postItems.size
-    }
 
     inner class MovieTopViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageTopMovie : ImageView = itemView.findViewById(R.id.imageViewDog)
@@ -29,7 +26,7 @@ class TopMoviesAdapter(private val context: Context, private val postItems: List
 
 
         @SuppressLint("SetTextI18n")
-        fun setMovieImage(movie: MovieRes){
+        fun setMovieImage(movie: Movie){
             Picasso.get()
                 .load(BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(movie.posterPath))
                 .into(imageTopMovie)
@@ -44,9 +41,9 @@ class TopMoviesAdapter(private val context: Context, private val postItems: List
         return MovieTopViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_top_movie, parent, false))
     }
 
-    override fun getItemCount(): Int = postItems.size
+    override fun getItemCount(): Int = listMovies.size
 
     override fun onBindViewHolder(holder: MovieTopViewHolder, position: Int) {
-        holder.setMovieImage(postItems[position])
+        holder.setMovieImage(listMovies[position])
     }
 }

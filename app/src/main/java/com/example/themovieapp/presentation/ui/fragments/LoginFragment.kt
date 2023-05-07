@@ -55,6 +55,7 @@ class LoginFragment : Fragment(), View.OnClickListener{
 
     private fun initArgumentsAndUI(){
         navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        navBar?.visibility = View.GONE
         if (!viewModel.checkUserFirebase()){
             findNavController().navigate(R.id.homeFragment)
             navBar?.visibility = View.VISIBLE

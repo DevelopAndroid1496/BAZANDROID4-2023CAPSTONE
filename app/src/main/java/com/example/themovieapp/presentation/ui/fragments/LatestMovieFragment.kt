@@ -81,7 +81,6 @@ class LatestMovieFragment : Fragment() {
         if (latestResponse.posterPath != null){
             Picasso.get()
                 .load(BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(latestResponse.posterPath))
-                .centerCrop()
                 .into(binding?.moviePoster, object : Callback {
                     override fun onSuccess() {}
                     override fun onError(e: Exception?) {}

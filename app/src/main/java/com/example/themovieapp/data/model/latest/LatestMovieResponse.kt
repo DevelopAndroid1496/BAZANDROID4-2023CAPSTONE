@@ -8,19 +8,19 @@ data class LatestMovieResponse (
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath: Any? = null,
+    val backdropPath: String? = null,
     @SerializedName("belongs_to_collection")
     val belongsToCollection: Any? = null,
     @SerializedName("budget")
-    val budget: Long,
+    val budget: Int,
     @SerializedName("genres")
     val genres: List<Gender>,
     @SerializedName("homepage")
     val homepage: String,
     @SerializedName("id")
-    val id: Long,
+    val id: Int,
     @SerializedName("imdb_id")
-    val imdbID: String,
+    val imdbID: String?,
     @SerializedName("original_language")
     val originalLanguage: String,
     @SerializedName("original_title")
@@ -31,7 +31,7 @@ data class LatestMovieResponse (
     val popularity: Double,
     @SerializedName("poster_path")
     @Expose
-    val posterPath: Any? = null,
+    val posterPath: String? = null,
     @SerializedName("production_companies")
     val productionCompanies: List<Any?>,
     @SerializedName("production_countries")
@@ -39,9 +39,9 @@ data class LatestMovieResponse (
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("revenue")
-    val revenue: Long,
+    val revenue: Int,
     @SerializedName("runtime")
-    val runtime: Long,
+    val runtime: Int,
     @SerializedName("spoken_languages")
     val spokenLanguages: List<SpokenLanguage>,
     @SerializedName("status")
@@ -53,8 +53,8 @@ data class LatestMovieResponse (
     @SerializedName("video")
     val video: Boolean,
     @SerializedName("vote_average")
-    val voteAverage: Double,
+    val voteAverage: Int,
     @SerializedName("vote_count")
-    val voteCount: Long
+    val voteCount: Int
 )
 

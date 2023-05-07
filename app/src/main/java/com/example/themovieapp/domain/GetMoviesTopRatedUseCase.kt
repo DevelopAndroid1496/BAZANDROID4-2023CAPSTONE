@@ -6,6 +6,7 @@ import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
 import com.example.themovieapp.data.model.now.MovieResponse
 import com.example.themovieapp.data.repository.MovieRepository
+import com.example.themovieapp.domain.model.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -18,7 +19,7 @@ class GetMoviesTopRatedUseCase @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    suspend operator fun invoke() : Flow<DataState<MovieResponse>> = flow{
+    suspend operator fun invoke() : Flow<DataState<List<Movie>>> = flow{
         emit(DataState.Loading)
         repository.getTopRatedMovies()
             .catch{ e -> e.printStackTrace() }

@@ -11,22 +11,27 @@ import com.example.themovieapp.R
 import com.example.themovieapp.data.PATH_IMAGES
 import com.example.themovieapp.data.model.now.MovieRes
 import com.example.themovieapp.domain.model.Movie
+import com.example.themovieapp.presentation.ui.fragments.HomeFragment
 import com.squareup.picasso.Picasso
 
-class NowMoviesAdapter(private val context: Context, private val movieItems: List<Movie>):
+class NowMoviesAdapter(private val context: Context, private val movieItems: List<Movie>, private val listener: OnItemClickListener? = null):
     RecyclerView.Adapter<NowMoviesAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageMovie : ImageView = itemView.findViewById(R.id.iv_pic_movie)
-        //private val tituloMovie: TextView = itemView.findViewById(R.id.tv_titulo_movie)
 
-        fun setMovieImage(movieRes: Movie){
+        fun setMovieImage(movieRes: Movie,position: Int){
             Picasso.get()
                 .load(BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(movieRes.posterPath))
                 .into(imageMovie)
 
-            //tituloMovie.text = movie.title
+            imageMovie.setOnClickListener {
+                listener?.onClickItem(position,movieRes)
+            }
+
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -36,6 +41,13 @@ class NowMoviesAdapter(private val context: Context, private val movieItems: Lis
     override fun getItemCount(): Int = movieItems.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.setMovieImage(movieItems[position])
+        holder.setMovieImage(movieItems[position],position)
     }
+
+
+    interface OnItemClickListener{
+        fun onClickItem(position: Int,movie: Movie)
+    }
+
 }
+
