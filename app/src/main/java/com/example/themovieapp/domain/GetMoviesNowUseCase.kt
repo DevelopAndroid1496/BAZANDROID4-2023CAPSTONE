@@ -16,22 +16,22 @@ import javax.inject.Inject
 
 class GetMoviesNowUseCase @Inject constructor(
     private val repository: MovieRepository,
-    @ApplicationContext private val context : Context,
+    //@ApplicationContext private val context: Context,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
     @RequiresApi(Build.VERSION_CODES.M)
     suspend operator fun invoke(): Flow<DataState<List<Movie>>> = flow<DataState<List<Movie>>> {
 
-        if (VerifyConnectionNetwork.isOnline(context = context )){
+        //if (VerifyConnectionNetwork.isOnline(context = context)){
             repository.getNowMovies()
                 .catch { e -> e.printStackTrace() }
                 .collect{
                     emit(it)
                 }
-        }else {
+        /*}else {
             emit(DataState.Success(repository.getNowMoviesFromDB()))
-        }
+        }*/
 
     }.flowOn(ioDispatcher)
 

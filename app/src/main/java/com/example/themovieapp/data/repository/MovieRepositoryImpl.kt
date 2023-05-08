@@ -3,14 +3,7 @@ package com.example.themovieapp.data.repository
 import com.example.themovieapp.common.BaseError
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.genders.toDatabaseGenders
-import com.example.themovieapp.data.model.genders.toDomain
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
-import com.example.themovieapp.data.service.MovieApi
-import com.example.themovieapp.domain.model.GenderDom
-import com.example.themovieapp.domain.model.Movie
-import com.example.themovieapp.domain.model.toDatabaseNow
-import com.example.themovieapp.domain.model.toDomain
+import com.example.themovieapp.domain.model.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,7 +12,7 @@ import rx.Observable
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val api: MovieApi,
+    private val api: com.example.remote.di.service.MovieApi,
     private val movieDao: com.example.local.db.dao.MovieDao,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MovieRepository {
@@ -38,19 +31,7 @@ class MovieRepositoryImpl @Inject constructor(
         }catch (e : Exception){ emit(value = DataState.Error(error = BaseError(status_message = "", status_code = -1,status_operation = false, exception = e)))}
     }
 
-    override fun getLatestMovie(): Observable<Response<LatestMovieResponse>> {
-        /*var myObj: Response<LatestMovieResponse>? = null
-        *//*val requestLatestEntity = api.getLatestMovie().flatMap {
-            myObj = it
-            Observable.just(it.body())
-                .map { latestResponse -> latestResponse?.toDomain()?.toDatabaseLatest() }
-        }.subscribe {
-            entityRequestFromObservable = it
-            CoroutineScope(ioDispatcher).launch {
-                entityRequestFromObservable?.let { it1 -> movieDao.insertLatestMovie(it1) }
-            }
-        }*/
-
+    override fun getLatestMovie(): Observable<Response<com.example.remote.di.model.latest.LatestMovieResponse>> {
         return api.getLatestMovie()
     }
 

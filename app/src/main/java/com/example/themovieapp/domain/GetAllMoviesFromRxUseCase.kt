@@ -1,7 +1,7 @@
 package com.example.themovieapp.domain
 
 import android.annotation.SuppressLint
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
+import com.example.remote.di.model.latest.LatestMovieResponse
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

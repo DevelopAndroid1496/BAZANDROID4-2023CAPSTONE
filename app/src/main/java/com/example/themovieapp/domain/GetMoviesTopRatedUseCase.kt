@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.themovieapp.common.BaseError
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.now.MovieResponse
+import com.example.remote.di.model.now.MovieResponse
 import com.example.themovieapp.data.repository.MovieRepository
 import com.example.themovieapp.domain.model.Movie
 import kotlinx.coroutines.CoroutineDispatcher

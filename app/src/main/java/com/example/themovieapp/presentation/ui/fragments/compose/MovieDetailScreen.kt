@@ -14,11 +14,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
-import com.example.themovieapp.BuildConfig
-import com.example.themovieapp.data.PATH_IMAGES
-
-
-
+import com.example.remote.di.service.ApiConstants
 @Composable
 fun MovieDetailScreen(
     path: String,
@@ -27,26 +23,12 @@ fun MovieDetailScreen(
     listGender: ArrayList<String> = arrayListOf()
 ) {
 
-    /*LaunchedEffect(Unit){
-        viewModel.gendersFromDB.collect{
-            when(it){
-                is DataState.Loading -> {}
-                is DataState.Success -> {
-                    listGender?.add(it.data)
-                }
-                is DataState.Error -> {}
-
-                else -> {}
-            }
-        }
-    }*/
-    
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
         val painter = rememberImagePainter(
-            data = BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(path)/*"https://www.nationalgeographic.com.es/medio/2022/12/12/perro-1_514aad3b_221212161023_1280x720.jpg"*/,
+            data = ApiConstants.BASE_URL_IMAGES.plus(ApiConstants.PATH_IMAGES).plus(path)/*"https://www.nationalgeographic.com.es/medio/2022/12/12/perro-1_514aad3b_221212161023_1280x720.jpg"*/,
             builder = {
                 // Configure opciones de Coil si se necesitan, como cache, redimensionamiento, etc.
             }

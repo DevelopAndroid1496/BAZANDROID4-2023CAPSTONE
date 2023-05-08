@@ -2,7 +2,7 @@ package com.example.themovieapp.common.di.data
 
 import com.example.themovieapp.data.repository.MovieRepository
 import com.example.themovieapp.data.repository.MovieRepositoryImpl
-import com.example.themovieapp.data.service.MovieApi
+import com.example.remote.di.service.MovieApi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -20,10 +20,10 @@ abstract class DataModule {
     companion object {
 
         @Provides
-        fun provideMovieService(retrofit: Retrofit.Builder) : MovieApi =
+        fun provideMovieService(retrofit: Retrofit.Builder) : com.example.remote.di.service.MovieApi =
 
             retrofit
                 .build()
-                .create(MovieApi::class.java)
+                .create(com.example.remote.di.service.MovieApi::class.java)
     }
 }

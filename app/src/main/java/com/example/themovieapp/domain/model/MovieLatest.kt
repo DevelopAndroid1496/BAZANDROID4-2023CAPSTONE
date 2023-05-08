@@ -2,7 +2,7 @@ package com.example.themovieapp.domain.model
 
 import android.os.Parcelable
 import com.example.local.db.entities.LatestMovieEntity
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
+import com.example.remote.di.model.latest.LatestMovieResponse
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -30,7 +30,7 @@ data class MovieLatest(
     ) : Parcelable
 
 
-fun LatestMovieResponse.toDomain() = backdropPath?.let {
+fun com.example.remote.di.model.latest.LatestMovieResponse.toDomain() = backdropPath?.let {
     MovieLatest(
         id,
         title,

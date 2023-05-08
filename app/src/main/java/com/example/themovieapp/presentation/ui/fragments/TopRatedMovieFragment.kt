@@ -11,7 +11,7 @@ import androidx.lifecycle.whenStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.data.model.now.MovieRes
+import com.example.remote.di.model.now.MovieRes
 import com.example.themovieapp.databinding.FragmentTopRatedMovieBinding
 import com.example.themovieapp.domain.model.Movie
 import com.example.themovieapp.presentation.ui.adapter.TopMoviesAdapter

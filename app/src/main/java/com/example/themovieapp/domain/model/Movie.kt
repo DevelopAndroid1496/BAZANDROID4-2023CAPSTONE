@@ -3,7 +3,7 @@ package com.example.themovieapp.domain.model
 import android.os.Parcelable
 import com.example.local.db.entities.MovieEntity
 import com.example.local.db.entities.TopRatedMovieEntity
-import com.example.themovieapp.data.model.now.MovieRes
+import com.example.remote.di.model.now.MovieRes
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -19,7 +19,7 @@ data class Movie(var adult: Boolean = false,
                  var voteCount: Int = 0,):Parcelable
 
 
-fun MovieRes.toDomain() =
+fun com.example.remote.di.model.now.MovieRes.toDomain() =
     Movie(
         adult,
         backdropPath,

@@ -1,6 +1,6 @@
-package com.example.themovieapp.data.model.latest
+package com.example.remote.di.model.latest
 
-import com.example.themovieapp.data.model.now.Gender
+import com.example.remote.di.model.now.Gender
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

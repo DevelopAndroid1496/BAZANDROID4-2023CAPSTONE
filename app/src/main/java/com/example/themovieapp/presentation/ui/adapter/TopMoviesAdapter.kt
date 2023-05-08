@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.themovieapp.BuildConfig
+import com.example.remote.di.service.ApiConstants
 import com.example.themovieapp.R
-import com.example.themovieapp.data.PATH_IMAGES
-import com.example.themovieapp.data.model.now.MovieRes
 import com.example.themovieapp.domain.model.Movie
 import com.squareup.picasso.Picasso
 
@@ -28,7 +26,7 @@ class TopMoviesAdapter(private val context: Context, private val listMovies: Lis
         @SuppressLint("SetTextI18n")
         fun setMovieImage(movie: Movie){
             Picasso.get()
-                .load(BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(movie.posterPath))
+                .load(ApiConstants.BASE_URL_IMAGES.plus(ApiConstants.PATH_IMAGES).plus(movie.posterPath))
                 .into(imageTopMovie)
 
             tituloMovie.text = movie.title

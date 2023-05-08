@@ -2,7 +2,7 @@ package com.example.themovieapp.domain
 
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.genders.GenderMovie
+import com.example.remote.di.model.genders.GenderMovie
 
 import com.example.themovieapp.data.repository.MovieRepository
 import com.example.themovieapp.domain.model.GenderDom

@@ -10,10 +10,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.themovieapp.R
 import com.example.themovieapp.common.BaseViewModel
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.data.model.genders.GenderMovie
-import com.example.themovieapp.data.model.genders.MovieGenderResponse
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
-import com.example.themovieapp.data.model.now.MovieResponse
+import com.example.remote.di.model.genders.GenderMovie
+import com.example.remote.di.model.genders.MovieGenderResponse
+import com.example.remote.di.model.latest.LatestMovieResponse
+import com.example.remote.di.model.now.MovieResponse
 import com.example.themovieapp.domain.*
 import com.example.themovieapp.domain.model.GenderDom
 import com.example.themovieapp.domain.model.Movie
@@ -44,8 +44,8 @@ class MovieViewModel @Inject constructor(
     val moviesNow: StateFlow<DataState<List<Movie>>>
         get() = _moviesNow
 
-    private val _moviesLatest = MutableStateFlow<DataState<LatestMovieResponse>>(DataState.Loading)
-    val moviesLatest: StateFlow<DataState<LatestMovieResponse>>
+    private val _moviesLatest = MutableStateFlow<DataState<com.example.remote.di.model.latest.LatestMovieResponse>>(DataState.Loading)
+    val moviesLatest: StateFlow<DataState<com.example.remote.di.model.latest.LatestMovieResponse>>
         get() = _moviesLatest
 
     private val _moviesTopRated = MutableStateFlow<DataState<List<Movie>>>(DataState.Loading)

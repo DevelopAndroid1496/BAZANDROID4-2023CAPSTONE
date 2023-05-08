@@ -1,4 +1,4 @@
-package com.example.themovieapp.data.model.latest
+package com.example.remote.di.model.latest
 
 import com.google.gson.annotations.SerializedName
 

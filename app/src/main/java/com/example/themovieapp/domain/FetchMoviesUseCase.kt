@@ -1,7 +1,7 @@
 package com.example.themovieapp.domain
 
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
+import com.example.remote.di.model.latest.LatestMovieResponse
 import com.example.themovieapp.data.repository.MovieRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import retrofit2.Response

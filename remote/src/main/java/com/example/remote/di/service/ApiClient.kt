@@ -1,6 +1,5 @@
-package com.example.themovieapp.data
+package com.example.remote.di.service
 
-import com.example.themovieapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,7 +27,7 @@ class ApiClient @Inject constructor() {
         val client: OkHttpClient = okHttpClientBuilder.build()
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .client(client)

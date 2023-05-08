@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
-import com.example.themovieapp.BuildConfig
 import com.example.themovieapp.R
 import com.example.themovieapp.common.DataState
-import com.example.themovieapp.data.PATH_IMAGES
-import com.example.themovieapp.data.model.latest.LatestMovieResponse
+import com.example.remote.di.service.ApiConstants
 import com.example.themovieapp.databinding.FragmentLatestMovieBinding
 import com.example.themovieapp.presentation.viewModel.MovieViewModel
 import com.squareup.picasso.Callback
@@ -21,7 +18,6 @@ import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -77,10 +73,10 @@ class LatestMovieFragment : Fragment() {
         }
     }
 
-    private fun updateLatestMovieUI(latestResponse : LatestMovieResponse){
+    private fun updateLatestMovieUI(latestResponse : com.example.remote.di.model.latest.LatestMovieResponse){
         if (latestResponse.posterPath != null){
             Picasso.get()
-                .load(BuildConfig.BASE_URL_IMAGES.plus(PATH_IMAGES).plus(latestResponse.posterPath))
+                .load(ApiConstants.BASE_URL_IMAGES.plus(ApiConstants.PATH_IMAGES).plus(latestResponse.posterPath))
                 .into(binding?.moviePoster, object : Callback {
                     override fun onSuccess() {}
                     override fun onError(e: Exception?) {}

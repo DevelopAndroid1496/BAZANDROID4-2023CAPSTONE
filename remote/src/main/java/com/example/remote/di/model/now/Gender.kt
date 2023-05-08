@@ -1,4 +1,4 @@
-package com.example.themovieapp.data.model.now
+package com.example.remote.di.model.now
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose

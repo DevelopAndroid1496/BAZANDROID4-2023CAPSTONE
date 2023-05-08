@@ -1,4 +1,4 @@
-package com.example.themovieapp.data.model.genders
+package com.example.remote.di.model.genders
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
