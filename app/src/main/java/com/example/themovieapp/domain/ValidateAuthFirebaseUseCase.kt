@@ -1,33 +1,34 @@
 package com.example.themovieapp.domain
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import com.example.themovieapp.R
 import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
 
 class ValidateAuthFirebaseUseCase @Inject constructor(
-    private val auth: FirebaseAuth,
-    private val uiFb: AuthUI
+    private val auth: FirebaseAuth
 ) {
 
-    private fun isExistUser(): Boolean {
+    private var googleSingInClient: GoogleSignInClient? = null
+
+    fun isExistUser(): Boolean {
         return auth.currentUser == null
     }
+    fun getInstanceAuthFb():FirebaseAuth{
+        return auth
+    }
 
-    fun generateUILogin(iconAvatar : Int? = null): Intent? {
-        return if (isExistUser())
-            uiFb.createSignInIntentBuilder()
-                .setLogo(android.R.drawable.btn_dropdown)
-                .setAvailableProviders(
-                    listOf(
-                        AuthUI.IdpConfig.EmailBuilder().build(),
-                        AuthUI.IdpConfig.GoogleBuilder().build(),
-                    )
-                ).build()
-        else
-            null
 
+    fun authGmailClient(ctx : Context) : GoogleSignInOptions{
+        return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(ctx.getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
     }
 
 }

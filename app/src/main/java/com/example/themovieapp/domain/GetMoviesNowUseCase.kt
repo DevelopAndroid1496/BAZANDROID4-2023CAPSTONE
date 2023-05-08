@@ -1,39 +1,38 @@
 package com.example.themovieapp.domain
 
-import android.util.Log
-import com.example.themovieapp.common.BaseError
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.themovieapp.common.DataState
 import com.example.themovieapp.common.di.app.IoDispatcher
-import com.example.themovieapp.data.model.now.MovieResponse
+import com.example.themovieapp.common.util.VerifyConnectionNetwork
 import com.example.themovieapp.data.repository.MovieRepository
+import com.example.themovieapp.domain.model.Movie
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
+
 import javax.inject.Inject
 
 class GetMoviesNowUseCase @Inject constructor(
     private val repository: MovieRepository,
+    //@ApplicationContext private val context: Context,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    suspend operator fun invoke() : Flow<DataState<MovieResponse>> = flow{
-        emit(DataState.Loading)
-        repository.getNowMovies()
-            .catch{ e ->
-                    Log.d("EXEP", e.message.toString())
-            }
-            .collect{ state ->
-                when(state){
-                    is DataState.Success -> {
-                        emit(DataState.Success(data = state.data))
-                    }
-                    is DataState.Error -> {
-                        emit(DataState.Error(error = BaseError(status_message = "Operation not performed")))
-                    }
-                    else -> {}
+    @RequiresApi(Build.VERSION_CODES.M)
+    suspend operator fun invoke(): Flow<DataState<List<Movie>>> = flow<DataState<List<Movie>>> {
+
+        //if (VerifyConnectionNetwork.isOnline(context = context)){
+            repository.getNowMovies()
+                .catch { e -> e.printStackTrace() }
+                .collect{
+                    emit(it)
                 }
-            }
+        /*}else {
+            emit(DataState.Success(repository.getNowMoviesFromDB()))
+        }*/
+
     }.flowOn(ioDispatcher)
+
 }

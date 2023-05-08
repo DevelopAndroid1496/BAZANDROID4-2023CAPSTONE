@@ -1,0 +1,20 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+dependencies {
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
+}
+
+detekt {
+    buildUponDefaultConfig = false
+    allRules = false
+    config = files("$rootDir/config/detekt/detekt.yml")
+}
+
+tasks.named("detekt").configure{
+    reports{
+        xml.required.set(true)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+    }
+}
